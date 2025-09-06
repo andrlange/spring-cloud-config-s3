@@ -160,7 +160,7 @@ spring-cloud-config-s3/
 ### Spring Versions
 - **Spring Boot**: 3.5.5
 - **Spring Cloud**: 2025.0.0
-- **Java**: 21 with preview features
+- **Java**: 21
 
 ### S3 Configuration
 The Config Server connects to MinIO using:
