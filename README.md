@@ -38,7 +38,7 @@ A comprehensive demonstration of Spring Cloud Config Server using S3-compatible 
 
 ### 1. Clone and Navigate
 ```bash
-cd /my-development-folder/.../spring-config
+cd /my-development-folder/.../spring-cloud-config-s3
 ```
 
 ### 2. Start All Services
@@ -95,8 +95,8 @@ This script will:
 
 ### Health Check APIs
 - **Config Server**: http://localhost:8889/actuator/health
-- **Test Client**: http://localhost:8080/actuator/health
-- **Dev Client**: http://localhost:8090/actuator/health
+- **Test Client**: http://localhost:8081/actuator/health
+- **Dev Client**: http://localhost:8091/actuator/health
 
 ### Config Server Direct Access
 ```bash
