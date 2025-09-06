@@ -30,7 +30,7 @@ A comprehensive demonstration of Spring Cloud Config Server using S3-compatible 
 ## 📋 Prerequisites
 
 - **Java 21** or higher
-- **Maven 3.6+**
+- **Maven 3.9+**
 - **Docker & Docker Compose**
 - **curl** (for health checks)
 
