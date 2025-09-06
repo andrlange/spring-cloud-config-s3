@@ -1,0 +1,4 @@
+# Bootstrap configuration to ensure S3 repository is loaded first
+spring:
+  profiles:
+    include: bootstrap

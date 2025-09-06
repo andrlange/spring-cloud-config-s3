@@ -1,0 +1,31 @@
+# Configuration for demo-service in test environment
+demo:
+  service:
+    name: "Demo Service - Test Environment"
+    parameters:
+      a: "test-value-alpha"
+      b: "test-value-beta"  
+      c: "test-value-gamma"
+    database:
+      url: "jdbc:h2:mem:testdb"
+      username: "test-user"
+    features:
+      feature-x: true
+      feature-y: false
+      feature-z: true
+
+# Spring Boot actuator settings for test
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info,metrics,env"
+  endpoint:
+    health:
+      show-details: always
+
+# Logging configuration for test
+logging:
+  level:
+    com.demo: DEBUG
+    org.springframework.cloud.config: DEBUG

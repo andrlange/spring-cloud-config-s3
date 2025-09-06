@@ -1,0 +1,54 @@
+# Cloud Foundry specific configuration
+# This profile is activated when running in Cloud Foundry environment
+
+# Logging configuration optimized for Cloud Foundry
+logging:
+  level:
+    com.demo.configserver: INFO
+    org.springframework.cloud.config: INFO
+    org.springframework.security: WARN
+    software.amazon.awssdk: WARN
+    org.springframework.cloud.cloudfoundry: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level [%X{traceId:-},%X{spanId:-}] %logger{36} - %msg%n"
+
+# Management endpoints configuration for Cloud Foundry
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,env
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: when-authorized
+      probes:
+        enabled: true
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+  server:
+    port: ${server.port:8888}  # Use same port in Cloud Foundry
+
+# Security configuration for Cloud Foundry
+spring:
+  security:
+    user:
+      name: ${SECURITY_USER_NAME:config-user}
+      password: ${SECURITY_USER_PASSWORD:${random.value}}
+
+# Cloud Foundry specific settings
+info:
+  app:
+    name: Spring Cloud Config Server
+    description: Configuration server with S3 backend running on Cloud Foundry
+    version: 1.0.0
+    profiles: ${spring.profiles.active:cloud}
+    vcap:
+      application:
+        instance_id: ${VCAP_APPLICATION.instance_id:unknown}
+        name: ${VCAP_APPLICATION.name:config-server}
+        space_name: ${VCAP_APPLICATION.space_name:unknown}
+        organization_name: ${VCAP_APPLICATION.organization_name:unknown}

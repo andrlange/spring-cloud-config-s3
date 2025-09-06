@@ -1,0 +1,58 @@
+{
+  "comment": "Sample VCAP_SERVICES for local testing with MinIO",
+  "s3": [
+    {
+      "name": "config-s3-service",
+      "label": "s3",
+      "plan": "standard",
+      "credentials": {
+        "endpoint": "http://localhost:9000",
+        "access-key": "minio-admin",
+        "secret-key": "minio-password",
+        "bucket": "config-bucket",
+        "region": "us-east-1"
+      },
+      "tags": ["s3", "object-storage"],
+      "volume_mounts": [],
+      "syslog_drain_url": null
+    }
+  ],
+  
+  "comment-production": "Sample VCAP_SERVICES for production DellEMC ECS",
+  "dell-ecs-example": [
+    {
+      "name": "config-s3-service",
+      "label": "dell-ecs",
+      "plan": "s3",
+      "credentials": {
+        "endpoint": "https://your-ecs-endpoint.com",
+        "access-key": "your-ecs-access-key",
+        "secret-key": "your-ecs-secret-key",
+        "bucket": "config-bucket",
+        "region": "us-east-1"
+      },
+      "tags": ["dell-ecs", "s3", "object-storage"],
+      "volume_mounts": [],
+      "syslog_drain_url": null
+    }
+  ],
+
+  "comment-aws": "Sample VCAP_SERVICES for AWS S3",
+  "aws-s3-example": [
+    {
+      "name": "config-s3-service", 
+      "label": "aws-s3",
+      "plan": "standard",
+      "credentials": {
+        "endpoint": "https://s3.amazonaws.com",
+        "accessKey": "your-aws-access-key",
+        "secretKey": "your-aws-secret-key",
+        "bucketName": "config-bucket",
+        "awsRegion": "us-east-1"
+      },
+      "tags": ["aws", "s3", "object-storage"],
+      "volume_mounts": [],
+      "syslog_drain_url": null
+    }
+  ]
+}

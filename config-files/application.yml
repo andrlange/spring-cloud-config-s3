@@ -1,0 +1,22 @@
+# Global configuration for all services
+spring:
+  application:
+    name: "Spring Config Demo"
+
+# Common settings
+demo:
+  common:
+    version: "1.0.0"
+    author: "Demo Team"
+    created: "2025-09-05"
+    
+server:
+  port: 8080
+  
+# Common actuator settings
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+  server:
+    port: 8081

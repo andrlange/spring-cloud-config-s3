@@ -1,0 +1,40 @@
+services:
+  minio:
+    image: minio/minio:latest
+    container_name: minio-s3-demo
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: minio-admin
+      MINIO_ROOT_PASSWORD: minio-password
+      MINIO_DEFAULT_BUCKETS: config-bucket
+    command: server /data --console-address ":9001"
+    volumes:
+      - ./config-files:/config-files   # <-- Host-Ordner einbinden
+      - minio-data:/data
+      - ./init-scripts:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+  minio-init:
+    image: minio/mc:latest
+    container_name: minio-init
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+      sleep 10;
+      /usr/bin/mc config host add minio http://minio:9000 minio-admin minio-password;
+      /usr/bin/mc mb minio/config-bucket --ignore-existing;
+      /usr/bin/mc policy set public minio/config-bucket;
+      /usr/bin/mc cp /config-files/* minio/config-bucket/ --recursive;
+      "
+    volumes:
+      - ./config-files:/config-files
+
+volumes:
+  minio-data:

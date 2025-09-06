@@ -1,0 +1,51 @@
+---
+applications:
+- name: spring-config-server
+  path: config-server/target/config-server-1.0.0.jar
+  memory: 1G
+  instances: 1
+  buildpacks:
+    - java_buildpack
+  env:
+    JAVA_OPTS: "-XX:ReservedCodeCacheSize=32M -Xss1M -Duser.timezone=UTC"
+    JBP_CONFIG_OPEN_JDK_JRE: "{ jre: { version: 21.+ } }"
+    SPRING_PROFILES_ACTIVE: cloud
+  services:
+    - config-s3-service
+  routes:
+    - route: config-server.apps.your-domain.com
+  health-check-type: http
+  health-check-http-endpoint: /actuator/health
+
+---
+# Example service definitions for different S3 providers
+
+# DellEMC ECS S3 Service
+- name: config-s3-service-ecs
+  create-service: dell-ecs s3 config-s3-service
+  config:
+    endpoint: "https://your-ecs-endpoint.com"
+    access-key: "your-ecs-access-key"
+    secret-key: "your-ecs-secret-key"
+    bucket: "config-bucket"
+    region: "us-east-1"
+
+# Generic S3 Service (for AWS S3 or S3-compatible storage)
+- name: config-s3-service-generic
+  create-service: s3 standard config-s3-service
+  config:
+    endpoint: "https://s3.amazonaws.com"
+    access-key: "your-aws-access-key"
+    secret-key: "your-aws-secret-key"
+    bucket: "config-bucket"
+    region: "us-east-1"
+
+# User-provided service (for custom S3 endpoints)
+- name: config-s3-service-custom
+  create-service: user-provided config-s3-service
+  credentials:
+    endpoint: "https://your-custom-s3-endpoint.com"
+    access-key: "your-access-key"
+    secret-key: "your-secret-key"
+    bucket: "config-bucket"
+    region: "us-east-1"

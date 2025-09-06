@@ -1,0 +1,69 @@
+# Spring Cloud Config Server Configuration
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-server
+  
+  # Cloud Foundry profile-specific configuration
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:local}
+  
+  cloud:
+    config:
+      server:
+        # S3 backend configuration for DellEMC ECS simulation
+        # These settings are used as fallback when VCAP_SERVICES is not available
+        aws-s3:
+          endpoint: ${S3_ENDPOINT:http://localhost:9000}  # MinIO endpoint
+          bucket: ${S3_BUCKET:config-bucket}
+          access-key: ${S3_ACCESS_KEY:minio-admin}
+          secret-key: ${S3_SECRET_KEY:minio-password}
+          region: ${S3_REGION:us-east-1}
+          service-name: ${S3_SERVICE_NAME:s3}  # VCAP service name to look for
+        
+        # Enable S3 backend
+        default-backend-type: s3
+        
+        # Health check configuration
+        health:
+          enabled: true
+          
+  # Security configuration
+  security:
+    user:
+      name: config-user
+      password: config-pass
+
+# Management endpoints configuration
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,env,configprops,beans
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: always
+  server:
+    port: 8889
+
+# Application information
+info:
+  app:
+    name: Spring Cloud Config Server
+    description: Configuration server with S3 backend (DellEMC ECS simulation)
+    version: 1.0.0
+    profiles: ${spring.profiles.active:default}
+
+# Logging configuration
+logging:
+  level:
+    com.demo.configserver: INFO
+    org.springframework.cloud.config: DEBUG
+    org.springframework.security: INFO
+    software.amazon.awssdk: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"

@@ -1,0 +1,37 @@
+# Configuration for demo-service in dev environment
+server:
+  port: 8090
+
+demo:
+  service:
+    name: "Demo Service - Development Environment"
+    parameters:
+      a: "dev-value-apple"
+      b: "dev-value-banana"
+      c: "dev-value-cherry"
+    database:
+      url: "jdbc:postgresql://localhost:5432/devdb"
+      username: "dev-user"
+    features:
+      feature-x: false
+      feature-y: true
+      feature-z: false
+
+# Spring Boot actuator settings for dev
+management:
+  server:
+    port: 8091
+  endpoints:
+    web:
+      exposure:
+        include: "health,info,metrics,env,configprops"
+  endpoint:
+    health:
+      show-details: when-authorized
+
+# Logging configuration for dev
+logging:
+  level:
+    com.demo: INFO
+    org.springframework.cloud.config: INFO
+    org.springframework.web: DEBUG
