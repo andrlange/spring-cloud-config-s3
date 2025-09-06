@@ -10,9 +10,9 @@ A comprehensive demonstration of Spring Cloud Config Server using S3-compatible 
 │   Port: 8080    │◄──►│   Port: 8888    │◄──►│   Port: 9000    │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
                                 ▲
-┌─────────────────┐            │
-│   Dev Client    │            │
-│   Port: 8090    │◄───────────┘
+┌─────────────────┐             │
+│   Dev Client    │             │
+│   Port: 8090    │◄────────────┘
 └─────────────────┘
 ```
 
