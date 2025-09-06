@@ -77,6 +77,12 @@ if ! curl -f -s http://localhost:9000/minio/health/live > /dev/null 2>&1; then
     for i in {1..30}; do
         if curl -f -s http://localhost:9000/minio/health/live > /dev/null 2>&1; then
             print_success "MinIO is ready!"
+            CONTAINER_ID=$(docker ps -q --filter "ancestor=minio/minio:latest")
+            docker exec "$CONTAINER_ID" mc alias set local http://localhost:9000 minio-admin minio-password
+            docker exec "$CONTAINER_ID" mc mb local/config-bucket --ignore-existing
+            docker exec "$CONTAINER_ID" mc cp /config-files/application.yml local/config-bucket/
+            docker exec "$CONTAINER_ID" mc cp /config-files/demo-service-test.yml local/config-bucket/
+            docker exec "$CONTAINER_ID" mc cp /config-files/demo-service-dev.yml local/config-bucket/
             break
         fi
         if [ $i -eq 30 ]; then
