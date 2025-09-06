@@ -182,8 +182,8 @@ The Config Server connects to MinIO using:
 4. **Edit** configuration files (e.g., demo-service-test.yml)
 5. **Refresh** client application configuration:
    ```bash
-   curl -X POST http://localhost:8080/actuator/refresh
-   curl -X POST http://localhost:8090/actuator/refresh
+   curl -X POST http://localhost:8081/actuator/refresh
+   curl -X POST http://localhost:8091/actuator/refresh
    ```
 6. **View updated values** in the web interface
 
