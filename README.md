@@ -407,3 +407,12 @@ To extend this demo:
 - The S3ConfigEnvironmentRepository provides custom S3 integration
 - Bootstrap context is used for Config Server client configuration
 - Health checks ensure proper service startup order
+
+## Third-Party Software
+
+This demo uses [MinIO](https://min.io), which is licensed under the GNU AGPL v3.0.
+The license for MinIO can be found here: https://github.com/minio/minio/blob/master/LICENSE
+
+The Unlicense in this repository applies only to the demo code, configuration files,
+and documentation created for this project. It does not apply to MinIO or any other
+third-party dependencies.
