@@ -76,12 +76,16 @@ This script will:
 - **Parameter C**: test-value-gamma
 - **Features**: X=ON, Y=OFF, Z=ON
 
+![Test Screenshot](images/test.png)
+
 ### Dev Environment (Orange Theme)
 - **Service Name**: Demo Service - Development Environment
 - **Parameter A**: dev-value-apple
 - **Parameter B**: dev-value-banana
 - **Parameter C**: dev-value-cherry
 - **Features**: X=OFF, Y=ON, Z=OFF
+
+![Dev Screenshot](images/dev.png)
 
 ## 🔗 API Endpoints
 
@@ -106,7 +110,7 @@ curl -u config-user:config-pass http://localhost:8888/demo-service/dev
 ## 📁 Project Structure
 
 ```
-spring-config-demo/
+spring-cloud-config-s3/
 ├── pom.xml                    # Parent Maven POM
 ├── docker-compose.yml         # MinIO S3 storage setup
 ├── start-demo.sh             # Startup script
