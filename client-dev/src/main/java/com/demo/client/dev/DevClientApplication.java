@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 
 /**
  * Development Environment Client Application.
- * 
+ * <p>
  * This Spring Boot application connects to the Config Server to retrieve
  * configuration specific to the development environment. It demonstrates how
  * applications can consume centralized configuration from S3-backed

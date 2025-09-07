@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 
 /**
  * Custom Environment Repository that reads configuration from S3.
- * 
+ * <p>
  * This implementation simulates DellEMC ECS Storage behavior by reading
  * configuration files from an S3-compatible storage system (MinIO).
  */
@@ -89,8 +89,7 @@ public class S3ConfigEnvironmentRepository implements EnvironmentRepository {
             String content = new String(s3Object.readAllBytes(), StandardCharsets.UTF_8);
             
             LOGGER.info("Successfully loaded configuration from S3: " + key);
-            
-            @SuppressWarnings("unchecked")
+
             Map<String, Object> properties = yaml.load(content);
             
             if (properties != null) {

@@ -1,6 +1,5 @@
 package com.demo.client.test;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +10,7 @@ import java.util.Map;
 
 /**
  * Controller for displaying configuration information.
- * 
+ * <p>
  * Provides both web pages and REST endpoints to view the configuration
  * values loaded from the Config Server.
  */
@@ -20,7 +19,6 @@ public class ConfigController {
 
     private final DemoProperties demoProperties;
 
-    @Autowired
     public ConfigController(DemoProperties demoProperties) {
         this.demoProperties = demoProperties;
     }

@@ -16,7 +16,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 /**
  * Security configuration for the Config Server.
- * 
+ * <p>
  * Provides basic authentication for configuration access while allowing
  * actuator endpoints to be accessible for monitoring.
  */

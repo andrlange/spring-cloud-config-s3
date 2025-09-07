@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * Configuration properties for the demo service.
- * 
+ * <p>
  * These properties are loaded from the Config Server and bound to this
  * configuration class using Spring Boot's @ConfigurationProperties mechanism.
  */

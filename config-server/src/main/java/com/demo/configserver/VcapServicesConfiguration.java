@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 
 /**
  * VCAP Services Configuration for Cloud Foundry deployments.
- * 
+ * <p>
  * This configuration reads S3 settings from VCAP_SERVICES environment variable
  * when running in Cloud Foundry, supporting both DellEMC ECS and generic S3 service bindings.
  */

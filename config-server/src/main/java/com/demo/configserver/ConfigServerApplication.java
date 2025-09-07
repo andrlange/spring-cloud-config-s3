@@ -6,10 +6,10 @@ import org.springframework.cloud.config.server.EnableConfigServer;
 
 /**
  * Spring Cloud Config Server application with S3 backend support.
- * 
+ * <p>
  * This application provides configuration management for Spring Boot applications
  * using S3-compatible storage (DellEMC ECS simulation via MinIO).
- * 
+ * <p>
  * Features:
  * - S3 backend configuration storage
  * - Environment-specific configurations (test, dev)

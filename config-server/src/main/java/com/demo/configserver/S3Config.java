@@ -15,17 +15,17 @@ import java.util.logging.Logger;
 
 /**
  * S3 Configuration for connecting to MinIO (DellEMC ECS simulation).
- * 
+ * <p>
  * This configuration sets up the S3Client to work with MinIO running locally,
  * which simulates DellEMC ECS Storage behavior for development and testing.
- * 
+ * <p>
  * This configuration is used as a fallback when VCAP_SERVICES is not available.
  */
 @Configuration
 @ConditionalOnMissingBean(VcapServicesConfiguration.S3ServiceInfo.class)
 public class S3Config {
 
-    private static final Logger LOGGER = Logger.getLogger(S3Configuration.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(S3Config.class.getName());
 
     @Value("${spring.cloud.config.server.aws-s3.endpoint}")
     private String s3Endpoint;
